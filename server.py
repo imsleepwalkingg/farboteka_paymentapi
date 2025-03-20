@@ -86,6 +86,9 @@ def handle_payment():
         else:
             return jsonify({"error": "Payment verification failed"}), 400
     return jsonify({"error": "Invalid payment status"}), 400
+import os
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    port = int(os.getenv('PORT', 5000))  # Get the Render-assigned port
+    app.run(host='0.0.0.0', port=port, debug=True)
+
